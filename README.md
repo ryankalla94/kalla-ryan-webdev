@@ -1,8 +1,5 @@
-# web-dev-template
+# kalla-ryan-webdev
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
-1. cd web-dev-template
-1. npm install
-1. mongod
-1. node server.js
-1. browse to localhost:3000
+My name is Ryan Kalla. I am a graduate student at Northeastern University studying Computer Science. For my undergrad I studied Classics at Brown University. 
+This repository is where I will keep my work for CS5610 Web Development.
+My Heroku app is located here : https://kalla-ryan-webdev.herokuapp.com/;
