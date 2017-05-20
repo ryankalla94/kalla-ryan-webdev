@@ -1,7 +1,92 @@
-input.form-control {
+input.form-control,
+textarea.form-control {
     margin-bottom: 5px;
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
+
+nav.navbar.navbar-default {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+label.navbar-title {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    color: #fff;
+}
+
+label.navbar-double-title {
+    float: left;
+    height: 50px;
+    padding-top: 15px;
+    font-size: 18px;
+    line-height: 20px;
+    color: #fff;
+}
+
+.navbar-header{
+    padding-left: 15px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .navbar-header{
+        padding-left: 0px;
+        width: 100%;
+    }
+}
+
+.navbar-footer{
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .navbar-footer{
+        padding-right: 0px;
+        padding-left: 0px;
+        width: 100%;
+    }
+}
+
+div.container-fluid.login-buttons {
+    margin-top: 50px;
+}
+
+div.profile-info {
+    margin-top: 25px;
+}
+
+
+span.glyphicon {
+    color: #fff;
+}
+
+span.blue-text {
+    color: #337ab7;
+}
+
+.website-list-header{
+    background-color: #337ab7;
+    color: #fff;
+}
+.new-website-half-navbar{
+    padding-right: 0px;
+}
+
+.navbar-link-right-padding{
+    padding-right: 5px;
+}
+
+
+
+

@@ -1,0 +1,18 @@
+body {
+    overflow: hidden;
+}
+.yellow-bg {
+    background-color: yellow
+}
+.red-bg {
+    background-color: red
+}
+.blue-bg {
+    background-color: blue
+}
+.grey-bg {
+    background-color: grey
+}
+.no-wrap {
+    white-space: nowrap
+}
