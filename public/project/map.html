@@ -21,30 +21,19 @@
 
     <script src="app.js"></script>
 
-    <title>Project Home Page</title>
+    <title>Project Map</title>
 </head>
 
 
 
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
 
-            <a class="navbar-brand" href="#">Project</a>
-        </div>
-    </div>
-</nav>
-
-<div class="container-fluid login-buttons">
-
-    <a class="btn btn-primary btn-block"
-       href="map-list.html">Login</a>
-
-
-</div> <!-- /container -->
+<div id="map"></div>
+<!-- Replace the value of the key parameter with your own API key. -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9lgvIli9MSMufacGSus0ZqLtHKSk1UJA&callback=initialize"></script>
 
 
 </body>
 </html>
+
