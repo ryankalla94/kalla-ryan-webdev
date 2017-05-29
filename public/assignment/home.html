@@ -4,38 +4,10 @@
 <head>
 
     <script src="../js/angular.min.js"></script>
-    <script src="../js/angular-route.min.js"></script>
     <script src="app.js"></script>
-    <script src="config.js"></script>
-
-    <!-- user -->
-    <script src="services/user.service.client.js"></script>
     <script src="views/user/controllers/login.controller.client.js"></script>
-    <script src="views/user/controllers/profile.controller.client.js"></script>
-    <script src="views/user/controllers/register.controller.client.js"></script>
 
-
-    <!-- website -->
-    <script src="services/website.service.client.js"></script>
-    <script src="views/website/controllers/website-list.controller.client.js"></script>
-    <script src="views/website/controllers/website-edit.controller.client.js"></script>
-    <script src="views/website/controllers/website-new.controller.client.js"></script>
-
-
-    <!-- page -->
-    <script src="services/page.service.client.js"></script>
-    <script src="views/page/controllers/page-list.controller.client.js"></script>
-    <script src="views/page/controllers/page-edit.controller.client.js"></script>
-    <script src="views/page/controllers/page-new.controller.client.js"></script>
-
-
-    <!-- widget -->
-    <script src="services/widget.service.client.js"></script>
-    <script src="views/widget/controllers/widget-list.controller.client.js"></script>
-    <script src="views/widget/controllers/widget-edit.controller.client.js"></script>
-    <script src="views/widget/controllers/widget-new.controller.client.js"></script>
-
-
+    <!-- Redirect to login page -->
 
 
     <meta charset="utf-8">
@@ -58,10 +30,28 @@
 
 <body>
 
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
 
-<div ng-view>
+            <a class="navbar-brand" href="#">Assignment</a>
+        </div>
+    </div>
+</nav>
 
-</div>
+<div class="container-fluid login-buttons">
+
+
+    <a class="btn btn-primary btn-block"
+       href="#!/login">Login</a>
+
+    <a class="btn btn-success btn-block"
+       href="views/user/templates/register.view.client.html">Register</a>
+
+
+
+</div> <!-- /container -->
 
 
 <!-- Bootstrap core JavaScript

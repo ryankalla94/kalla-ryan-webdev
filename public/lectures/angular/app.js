@@ -3,7 +3,7 @@
  */
 
 
-(function(){ // IIFE = Inmediately Invoked Function Expression
+(function(){ // IIFE = Immediately Invoked Function Expression
     angular
         .module("BlogApp", [])
         .controller("BlogPostListController", BlogPostListController);

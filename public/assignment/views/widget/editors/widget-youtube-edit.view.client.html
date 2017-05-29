@@ -1,0 +1,34 @@
+
+<div class="container-fluid widget-edit">
+    <label for="name">Name</label>
+    <input class="form-control"
+           ng-model="model.widget.name"
+           placeholder="facebook"
+           value="Video Name"
+           id="name"/>
+
+    <label for="text">Text</label>
+    <input class="form-control"
+           ng-model="model.widget.text"
+           placeholder="facebook"
+           value="New Boat"
+           id="text"/>
+
+    <label for="url">URL</label>
+    <input class="form-control"
+           ng-model="model.widget.url"
+           placeholder="facebook"
+           value="https://www.youtube.com/embed/rwhuzDSlgXM"
+           id="url"/>
+
+    <label for="width">Width</label>
+    <select id="width" ng-model="model.widget.width" class="form-control">
+        <option>100%</option>
+        <option>75%</option>
+        <option>50%</option>
+        <option>25%</option>
+    </select>
+
+    <a ng-click="model.deleteWidget(model.widgetId)"
+       class="btn btn-block btn-danger">Delete</a>
+</div>

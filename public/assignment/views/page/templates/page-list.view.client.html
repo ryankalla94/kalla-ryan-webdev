@@ -1,0 +1,72 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid navbar-blue">
+        <div class="navbar-header">
+
+            <label class="navbar-title">
+                <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                &nbsp;
+                Pages
+            </label>
+            <p class="navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid pages-info">
+    <ul class="list-group">
+
+        <li class="list-group-item website-list-header">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-xs-9">
+                    Name
+                </div>
+                <div class="col-lg-3 visible-lg">
+                    Date Added
+                </div>
+                <div class="col-md-3 hidden-sm hidden-xs">
+                    Date Modified
+                </div>
+                <div class="col-xs-3">
+                </div>
+            </div>
+        </li>
+
+
+        <li ng-repeat="page in model.pages" class="list-group-item">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-xs-9">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                        {{page.name}}
+                    </a>
+                </div>
+                <div class="col-lg-3 visible-lg">
+                    <span class="blue-text">
+                        {{page.created | date}}
+                    </span>
+
+                </div>
+                <div class="col-md-3 hidden-sm hidden-xs">
+                    <span class="blue-text">
+                        {{page.accessed | date}}
+                    </span>
+                </div>
+                <div class="col-xs-3">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="navbar-link pull-right">
+                        <span class="glyphicon glyphicon-cog blue-text"></span>
+                    </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

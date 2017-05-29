@@ -1,0 +1,91 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid navbar-blue">
+        <div class="navbar-header row">
+            <div class="col-sm-4 hidden-xs websites-navbar">
+                <label class="navbar-double-title">
+                    <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    &nbsp;
+                    Websites
+                </label>
+                <p class="navbar-text pull-right">
+                    <a href="#!/user/{{model.userId}}/website/new" class="navbar-link-right-padding">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-xs-12 col-sm-8 new-website-half-navbar">
+                <label class="navbar-double-title">
+                    <span class="hidden-sm hidden-md hidden-lg hidden-xl">
+                        <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    &nbsp;
+                    </span>
+                    New Website
+                </label>
+                <p class="navbar-text pull-right">
+                    <a ng-click="model.createWebsite(website)" class="navbar-link">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid websites-new">
+    <div class="row">
+        <div class="col-sm-4 hidden-xs websites-list">
+            <ul class="list-group">
+
+                <li class="list-group-item website-list-header">
+                    Name
+                </li>
+
+                <li ng-repeat="website in model.websites" class="list-group-item">
+                    <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
+                        {{website.name}}
+                    </a>
+                    <a href="#!/user/{{model.userId}}/website/{{website._id}}" class="navbar-link pull-right">
+                        <span class="glyphicon glyphicon-cog blue-text"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-xs-12 col-sm-8 website-new">
+
+            <div ng-show="model.error" class="alert alert-danger">
+                {{model.error}}
+            </div>
+
+            <div class="form-group">
+                <label for="website-name">Name</label>
+                <input type="text"
+                       ng-model="website.name"
+                       class="form-control"
+                       id="website-name"
+                       placeholder="facebook">
+            </div>
+            <div class="form-group">
+                <label for="website-description">Description</label>
+                <textarea type="text"
+                          ng-model="website.description"
+                          class="form-control"
+                          id="website-description"
+                          rows="6"
+                          placeholder="A social media website where you can connect with friends."></textarea>
+            </div>
+            <a class="btn btn-danger btn-block"
+               href="#!/user/{{model.userId}}/website">Cancel</a>
+        </div>
+    </div>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
