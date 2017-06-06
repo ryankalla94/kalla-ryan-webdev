@@ -1,5 +1,6 @@
 input.form-control,
 textarea.form-control,
+.btn,
 select.form-control {
     margin-bottom: 5px;
 }

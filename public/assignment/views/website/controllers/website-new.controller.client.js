@@ -15,7 +15,15 @@
 
 
         function init(){
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
+            //model.websites = websiteService.findAllWebsitesForUser(model.userId);
+
+            websiteService
+                .findAllWebsitesForUser(model.userId)
+                .then(renderWebsites);
+
+            function renderWebsites (websites){
+                model.websites = websites;
+            }
         }
         init();
 
@@ -29,8 +37,15 @@
                 return;
             }
 
-            websiteService.createWebsite(model.userId, website);
-            $location.url('/user/' + model.userId + "/website");
+            websiteService
+                .createWebsite(model.userId, website)
+                .then(function(website){
+                    $location.url('/user/' + model.userId + "/website");
+                });
+
+
+            //websiteService.createWebsite(model.userId, website);
+
         }
 
 

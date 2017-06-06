@@ -14,7 +14,13 @@
 
 
         function init(){
-            model.pages = pageService.findPagesByWebsiteId(model.websiteId);
+            pageService
+                .findPagesByWebsiteId(model.websiteId)
+                .then(renderPages);
+
+            function renderPages(pages){
+                model.pages = pages;
+            }
         }
         init();
 

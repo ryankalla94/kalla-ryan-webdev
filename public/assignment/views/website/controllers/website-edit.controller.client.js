@@ -16,14 +16,34 @@
 
 
         function init(){
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
-            model.website = websiteService.findWebsiteById(model.websiteId);
+
+            websiteService
+                .findAllWebsitesForUser(model.userId)
+                .then(renderWebsites);
+
+            websiteService
+                .findWebsiteById(model.websiteId)
+                .then(renderWebsite);
+
+            function renderWebsites (websites){
+                model.websites = websites;
+            }
+
+            function renderWebsite (website){
+                model.website = website;
+            }
+
+
         }
         init();
 
         function deleteWebsite(websiteId) {
-            websiteService.deleteWebsite(websiteId);
-            $location.url('/user/' + model.userId + "/website");
+            websiteService
+                .deleteWebsite(websiteId)
+                .then(function(){
+                    $location.url('/user/' + model.userId + "/website");
+                });
+
         }
 
         function updateWebsite(website){
@@ -35,8 +55,11 @@
                 model.error = 'name is required';
                 return;
             }
-            websiteService.updateWebsite(website._id, website);
-            $location.url('/user/' + model.userId + "/website")
+            websiteService
+                .updateWebsite(website._id, website)
+                .then(function(){
+                    $location.url('/user/' + model.userId + "/website");
+                });
         }
 
 

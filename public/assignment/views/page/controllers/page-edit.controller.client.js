@@ -17,14 +17,32 @@
 
 
         function init(){
-            model.pages = pageService.findPagesByWebsiteId(model.websiteId);
-            model.page = pageService.findPageById(model.pageId);
+            pageService
+                .findPagesByWebsiteId(model.websiteId)
+                .then(renderPages);
+
+            pageService
+                .findPageById(model.pageId)
+                .then(renderPage);
+
+            function renderPages(pages){
+                model.pages = pages;
+            }
+
+            function renderPage(page){
+                model.page = page;
+            }
+
         }
         init();
 
         function deletePage(pageId){
-            pageService.deletePage(pageId);
-            $location.url('/user/' + model.userId + "/website/" + model.websiteId + '/page');
+            pageService
+                .deletePage(pageId)
+                .then(function (){
+                    $location.url('/user/' + model.userId + "/website/" + model.websiteId + '/page');
+                });
+
         }
 
         function updatePage(page){
@@ -35,13 +53,14 @@
                 model.error = 'name is required';
                 return;
             }
-            pageService.updatePage(page._id, page);
-            $location.url('/user/' + model.userId + "/website/" + model.websiteId + '/page');
+            pageService
+                .updatePage(page._id, page)
+                .then(function(){
+                    $location.url('/user/' + model.userId + "/website/" + model.websiteId + '/page');
+
+                });
         }
 
 
-
     }
-})();/**
- * Created by ryankalla on 5/28/17.
- */
+})();

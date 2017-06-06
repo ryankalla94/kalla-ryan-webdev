@@ -18,8 +18,22 @@
 
 
         function init(){
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
-            model.widget = widgetService.findWidgetById(model.widgetId);
+            widgetService
+                .findWidgetsByPageId(model.pageId)
+                .then(renderWidgets);
+
+            widgetService
+                .findWidgetById(model.widgetId)
+                .then(renderWidget);
+
+            function renderWidgets(widgets){
+                model.widgets = widgets;
+            }
+
+            function renderWidget(widget){
+                model.widget = widget;
+            }
+
         }
         init();
 
@@ -33,13 +47,19 @@
             if(typeof widget.size === 'string'){
                 widget.size = parseInt(widget.size.charAt(0));
             }
-            widgetService.updateWidget(widget._id, widget);
-            $location.url('/user/' + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+            widgetService
+                .updateWidget(widget._id, widget)
+                .then(function(){
+                    $location.url('/user/' + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+                });
         }
 
         function deleteWidget(widgetId){
-            widgetService.deleteWidget(widgetId);
-            $location.url('/user/' + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+            widgetService
+                .deleteWidget(widgetId)
+                .then(function(){
+                    $location.url('/user/' + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+                });
         }
 
 

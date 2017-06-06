@@ -18,29 +18,40 @@
 
 
         function init(){
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
-        }
+            widgetService
+                .findWidgetsByPageId(model.pageId)
+                .then(renderWidgets);
+
+            function renderWidgets(widgets){
+                model.widgets = widgets;
+            }        }
         init();
 
         function createImageWidget(){
             var widget = { "widgetType": "IMAGE" };
-            widget._id = (new Date()).getTime() + "";
-            widgetService.createWidget(model.pageId, widget);
-            $location.url('/user/' + model.userId + "/website/" + model.websiteId + '/page/' + model.pageId + "/widget/" + widget._id);
+            widgetService
+                .createWidget(model.pageId, widget)
+                .then(function(widget){
+                    $location.url('/user/' + model.userId + "/website/" + model.websiteId + '/page/' + model.pageId + "/widget/" + widget._id);
+                });
         }
 
         function createHeadingWidget(){
             var widget = { "widgetType": "HEADING" };
-            widget._id = (new Date()).getTime() + "";
-            widgetService.createWidget(model.pageId, widget);
-            $location.url('/user/' + model.userId + "/website/" + model.websiteId + '/page/' + model.pageId + "/widget/" + widget._id);
+            widgetService
+                .createWidget(model.pageId, widget)
+                .then(function(widget){
+                    $location.url('/user/' + model.userId + "/website/" + model.websiteId + '/page/' + model.pageId + "/widget/" + widget._id);
+                });
         }
 
         function createYouTubeWidget(){
             var widget = { "widgetType": "YOUTUBE" };
-            widget._id = (new Date()).getTime() + "";
-            widgetService.createWidget(model.pageId, widget);
-            $location.url('/user/' + model.userId + "/website/" + model.websiteId + '/page/' + model.pageId + "/widget/" + widget._id);
+            widgetService
+                .createWidget(model.pageId, widget)
+                .then(function(widget){
+                    $location.url('/user/' + model.userId + "/website/" + model.websiteId + '/page/' + model.pageId + "/widget/" + widget._id);
+                });
         }
 
 

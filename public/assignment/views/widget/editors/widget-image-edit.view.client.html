@@ -30,11 +30,23 @@
     </select>
 
 
-    <label for="file">Upload</label>
-    <input id="file" multiple type="file" class="form-control"/>
 
-    <a href=""
-       class="btn btn-block btn-success">Upload</a>
+
+
+    <label for="file">Upload</label>
+    <form action="/api/assignment/upload"
+          id="file"
+          method="post"
+          enctype="multipart/form-data">
+        <input  name="myFile"    type="file" class="form-control"/>
+        <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
+        <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
+        <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
+        <input  name="pageId"    value="{{model.pageId}}"   style="display: none"/>
+        <input  name="widgetId"  value="{{model.widget._id}}"   style="display: none"/>
+        <button type="submit"    class="btn btn-block btn-success">Upload Image</button>
+    </form>
+
 
     <a ng-click="model.deleteWidget(model.widgetId)"
        class="btn btn-block btn-danger">Delete</a>

@@ -18,7 +18,13 @@
 
 
         function init(){
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+            widgetService
+                .findWidgetsByPageId(model.pageId)
+                .then(renderWidgets);
+
+            function renderWidgets(widgets){
+                model.widgets = widgets;
+            }
         }
         init();
 
