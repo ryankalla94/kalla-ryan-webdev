@@ -12,4 +12,4 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = require('q').promise;
 
-mongoose.createConnection('mongodb://localhost/mydb');;
+//mongoose.createConnection('mongodb://localhost/mydb');;
