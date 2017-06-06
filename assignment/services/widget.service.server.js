@@ -4,10 +4,14 @@
 
 (function (){
 
+    console.log("test1");
+
     var app = require('../../express');
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
 
+
+    console.log("test2");
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
