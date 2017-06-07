@@ -99,9 +99,13 @@ span.black-text {
     padding-right: 5px;
 }
 
+.wd-widget-list{
+    padding-left: 0;
+}
 
 .wd-widget {
     margin-bottom: 10px;
+    list-style: none;
 }
 
 .wd-widget > img {

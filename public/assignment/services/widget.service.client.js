@@ -12,6 +12,7 @@
         this.findWidgetById = findWidgetById;
         this.updateWidget = updateWidget;
         this.deleteWidget = deleteWidget;
+        this.orderWidgets = orderWidgets;
 
 
         function createWidget(pageId, widget){
@@ -54,6 +55,13 @@
                 });
         }
 
+
+        function orderWidgets(url) {
+            return $http.put(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
 
 
 

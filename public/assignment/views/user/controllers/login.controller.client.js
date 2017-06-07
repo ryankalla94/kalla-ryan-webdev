@@ -20,6 +20,9 @@
                     } else {
                         model.message = "sorry, " + username + " not found. please try again!";
                     }
+                }, function(){
+                    model.message = "sorry, invalid username or password. please try again!";
+
                 })
 
 

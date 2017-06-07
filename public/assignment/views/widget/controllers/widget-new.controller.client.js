@@ -29,6 +29,7 @@
 
         function createImageWidget(){
             var widget = { "widgetType": "IMAGE" };
+            widget.width = "100%";
             widgetService
                 .createWidget(model.pageId, widget)
                 .then(function(widget){
