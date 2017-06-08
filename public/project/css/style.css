@@ -44,3 +44,11 @@ span.glyphicon {
 .btn{
     margin-top: 10px;
 }
+
+#hiddenButton {
+    display: none;
+}
+
+h3 {
+    text-align: center;
+}

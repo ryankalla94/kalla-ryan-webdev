@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="MapApp">
 <head>
 
     <meta charset="utf-8">
@@ -11,6 +11,8 @@
     <!--<link rel="icon" href="../../favicon.ico">-->
 
     <title>Theme Template for Bootstrap</title>
+
+    <script src="../js/angular.min.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="../assignment/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +28,7 @@
 
 
 
-<body>
+<body ng-controller="mapController as model">
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid navbar-blue">
@@ -44,18 +46,35 @@
 </nav>
 
 
+
 <div class="container-fluid" id="map"></div>
 
-<a ng-click="getLocation()"
+<h3>
+    Click to add a pin, or...
+</h3>
+
+<a ng-click="model.getLocation()"
    class="btn btn-success btn-block" id="currentLocationButton">
     Pin Current Location
 </a>
 
+<button ng-click="model.showAddress()" class="btn btn-block btn-primary">
+    show address
+</button>
+
+<h3 id="address">
+    {{model.address}}
+</h3>
+
+
+<button id="hiddenButton" ng-click="model.test()"></button>
 
 
 
-<!-- Replace the value of the key parameter with your own API key. -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9lgvIli9MSMufacGSus0ZqLtHKSk1UJA&callback=initialize"></script>
+
+
+<!-- Replace the value of the key parameter with your own API key.                              &callback=initialize -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9lgvIli9MSMufacGSus0ZqLtHKSk1UJA"></script>
 
 
 </body>
