@@ -28,7 +28,7 @@
         init();
 
         function createImageWidget(){
-            var widget = { "widgetType": "IMAGE" };
+            var widget = { "type": "IMAGE" };
             widget.width = "100%";
             widgetService
                 .createWidget(model.pageId, widget)
@@ -38,7 +38,7 @@
         }
 
         function createHeadingWidget(){
-            var widget = { "widgetType": "HEADING" };
+            var widget = { "type": "HEADING" };
             widgetService
                 .createWidget(model.pageId, widget)
                 .then(function(widget){
@@ -47,7 +47,7 @@
         }
 
         function createYouTubeWidget(){
-            var widget = { "widgetType": "YOUTUBE" };
+            var widget = { "type": "YOUTUBE" };
             widgetService
                 .createWidget(model.pageId, widget)
                 .then(function(widget){

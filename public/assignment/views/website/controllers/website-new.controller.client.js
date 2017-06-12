@@ -15,7 +15,6 @@
 
 
         function init(){
-            //model.websites = websiteService.findAllWebsitesForUser(model.userId);
 
             websiteService
                 .findAllWebsitesForUser(model.userId)
@@ -43,8 +42,6 @@
                     $location.url('/user/' + model.userId + "/website");
                 });
 
-
-            //websiteService.createWebsite(model.userId, website);
 
         }
 

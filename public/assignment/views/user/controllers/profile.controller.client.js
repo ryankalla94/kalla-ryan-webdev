@@ -39,8 +39,7 @@
         function deleteUser(user){
             userService
                 .deleteUser(user._id)
-                .then(
-                    function (){
+                .then(function (){
                     $location.url('/');
                 }, function(){
                     model.error = "Unable to unregister";
