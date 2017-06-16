@@ -13,6 +13,17 @@ html, body {
     padding: 0;
 }
 
+input.form-control,
+textarea.form-control,
+.btn,
+select.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 60px;
+}
+
 .login-buttons {
     margin-top: 60px;
 }

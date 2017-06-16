@@ -6,15 +6,15 @@
         .module('WAM')
         .controller('flickrImageSearchController', flickrImageSearchController);
 
-    function flickrImageSearchController($routeParams, flickrService, widgetService, $location) {
+    function flickrImageSearchController($routeParams, currentUser, flickrService, widgetService, $location) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
         model.searchPhotos = searchPhotos;
-        model.selectPhoto = selectPhoto
+        model.selectPhoto = selectPhoto;
 
 
         function init(){

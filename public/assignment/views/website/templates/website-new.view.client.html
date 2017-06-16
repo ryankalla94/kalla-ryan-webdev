@@ -4,14 +4,14 @@
         <div class="navbar-header row">
             <div class="col-sm-4 hidden-xs websites-navbar">
                 <label class="navbar-double-title">
-                    <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                    <a href="#!/website" class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                     &nbsp;
                     Websites
                 </label>
                 <p class="navbar-text pull-right">
-                    <a href="#!/user/{{model.userId}}/website/new" class="navbar-link-right-padding">
+                    <a href="#!/website/new" class="navbar-link-right-padding">
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>
                 </p>
@@ -20,7 +20,7 @@
             <div class="col-xs-12 col-sm-8 new-website-half-navbar">
                 <label class="navbar-double-title">
                     <span class="hidden-sm hidden-md hidden-lg hidden-xl">
-                        <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                        <a href="#!/website" class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                     &nbsp;
@@ -49,10 +49,10 @@
                 </li>
 
                 <li ng-repeat="website in model.websites" class="list-group-item">
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
+                    <a href="#!/website/{{website._id}}/page">
                         {{website.name}}
                     </a>
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}" class="navbar-link pull-right">
+                    <a href="#!/website/{{website._id}}" class="navbar-link pull-right">
                         <span class="glyphicon glyphicon-cog blue-text"></span>
                     </a>
                 </li>
@@ -83,7 +83,7 @@
                           placeholder="A social media website where you can connect with friends."></textarea>
             </div>
             <a class="btn btn-danger btn-block"
-               href="#!/user/{{model.userId}}/website">Cancel</a>
+               href="#!/website">Cancel</a>
         </div>
     </div>
 </div>

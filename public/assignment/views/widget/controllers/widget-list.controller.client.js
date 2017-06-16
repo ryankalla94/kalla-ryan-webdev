@@ -6,10 +6,10 @@
         .module('WAM')
         .controller('widgetListController', widgetListController);
 
-    function widgetListController($sce, $routeParams, $location, widgetService) {
+    function widgetListController($sce, currentUser, $routeParams, $location, widgetService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.trust = trust;

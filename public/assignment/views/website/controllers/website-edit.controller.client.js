@@ -6,10 +6,10 @@
         .module('WAM')
         .controller('websiteEditController', websiteEditController);
 
-    function websiteEditController($routeParams, $location, websiteService) {
+    function websiteEditController($routeParams, $location, currentUser, websiteService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.deleteWebsite = deleteWebsite;
         model.updateWebsite = updateWebsite;
@@ -41,7 +41,7 @@
             websiteService
                 .deleteWebsite(websiteId)
                 .then(function(){
-                    $location.url('/user/' + model.userId + "/website");
+                    $location.url('/website');
                 });
 
         }
@@ -58,7 +58,7 @@
             websiteService
                 .updateWebsite(website._id, website)
                 .then(function(){
-                    $location.url('/user/' + model.userId + "/website");
+                    $location.url('/website');
                 });
         }
 

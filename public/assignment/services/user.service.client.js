@@ -16,9 +16,69 @@
             findUserByUsername: findUserByUsername,
             createUser: createUser,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            login: login,
+            register: register,
+            logout: logout,
+            loggedIn : loggedIn,
+            checkAdmin: checkAdmin,
+            findAllUsers: findAllUsers
         };
         return api;
+
+
+        function findAllUsers(){
+            var url = '/api/assignment/user';
+            return $http.get(url)
+                .then(function (response){
+                    return response.data;
+                });
+        }
+
+        function login(username, password){
+            var url = '/api/assignment/login';
+            var credentials = {
+                username : username,
+                password : password
+            };
+            return $http.post(url, credentials)
+                .then(function (response){
+                    return response.data;
+                });
+        }
+
+        function register(userObj){
+            var url = "/api/assignment/register";
+            return $http.post(url, userObj)
+                .then(function (response){
+                    return response.data;
+                });
+
+        }
+
+        function loggedIn(){
+            var url = "/api/assignment/loggedin";
+            return $http.get(url)
+                .then(function (response){
+                    return response.data;
+                });
+        }
+
+        function checkAdmin(){
+            var url = "/api/assignment/checkAdmin";
+            return $http.get(url)
+                .then(function (response){
+                    return response.data;
+                });
+        }
+
+        function logout(){
+            var url = '/api/assignment/logout';
+            return $http.post(url)
+                .then(function (response){
+                    return response.data;
+                });
+        }
 
 
         function createUser(user){

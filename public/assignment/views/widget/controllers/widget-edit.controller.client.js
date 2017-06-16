@@ -6,10 +6,10 @@
         .module('WAM')
         .controller('widgetEditController', widgetEditController);
 
-    function widgetEditController($sce, $routeParams, $location, widgetService) {
+    function widgetEditController($routeParams, currentUser, $location, widgetService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];

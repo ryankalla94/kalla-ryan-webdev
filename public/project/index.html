@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="MapApp">
 <head>
 
     <meta charset="utf-8">
@@ -10,6 +10,23 @@
     <meta name="author" content="">
     <!--<link rel="icon" href="../../favicon.ico">-->
 
+
+    <!-- Angular -->
+    <script src="../js/angular.min.js"></script>
+    <script src="../js/angular-route.min.js"></script>
+
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!-- User -->
+    <script src="services/user.service.client.js"></script>
+    <script src="views/user/controllers/login.controller.client.js"></script>
+    <script src="views/user/controllers/profile.controller.client.js"></script>
+    <script src="views/user/controllers/register.controller.client.js"></script>
+
+
+
     <title>Theme Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
@@ -19,7 +36,8 @@
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
 
-    <script src="app.js"></script>
+    <script src="views/map/controllers/map.controller.client.js"></script>
+
 
     <title>Project Home Page</title>
 </head>
@@ -28,22 +46,9 @@
 
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
+<div ng-view>
 
-            <a class="navbar-brand" href="#">Project</a>
-        </div>
-    </div>
-</nav>
-
-<div class="container-fluid login-buttons">
-
-    <a class="btn btn-primary btn-block"
-       href="map-list.html">Login</a>
-
-
-</div> <!-- /container -->
+</div>
 
 
 </body>

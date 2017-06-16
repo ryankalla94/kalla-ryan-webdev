@@ -7,18 +7,29 @@
         .module('WAM')
         .controller('profileController', profileController);
 
-    function profileController($location, $routeParams, userService) {
+    function profileController($location, $routeParams, currentUser, userService) {
 
         var model = this;
 
-        model.userId = $routeParams['userId'];
+         // model.userId = $routeParams['userId'];
+
+
+        model.userId = currentUser._id;
+
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
+        model.logout = logout;
 
+        function init(){
+            // userService
+            //     .findUserById(model.userId)
+            //     .then(renderUser, userError);
 
-        userService
-            .findUserById(model.userId)
-            .then(renderUser, userError);
+            renderUser(currentUser);
+        }
+
+        init();
+
 
         function renderUser(user){
             model.user = user;
@@ -44,6 +55,15 @@
                 }, function(){
                     model.error = "Unable to unregister";
                 });
+        }
+
+
+        function logout(){
+            userService
+                .logout()
+                .then(function (){
+                    $location.url('/');
+                })
         }
 
     }

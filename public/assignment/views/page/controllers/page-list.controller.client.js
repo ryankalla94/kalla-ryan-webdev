@@ -6,10 +6,10 @@
         .module('WAM')
         .controller('pageListController', pageListController);
 
-    function pageListController($routeParams, pageService) {
+    function pageListController($routeParams, currentUser, pageService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
 
 
@@ -28,6 +28,4 @@
 
 
     }
-})();/**
- * Created by ryankalla on 5/28/17.
- */
+})();

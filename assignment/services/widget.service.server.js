@@ -89,6 +89,14 @@ function uploadImage(req, res) {
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
 
+    var callbackUrl   = "/assignment/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+
+
+    if(!myFile){
+        res.redirect(callbackUrl);
+        return;
+    }
+
     var originalname  = myFile.originalname; // file name on user's computer
     var filename      = myFile.filename;     // new file name in upload folder
     var path          = myFile.path;         // full path of uploaded file
@@ -96,14 +104,18 @@ function uploadImage(req, res) {
     var size          = myFile.size;
     var mimetype      = myFile.mimetype;
 
-    widget = widgets.find(function (widget) {
-        return widget._id === widgetId;
-    });
-    widget.url = '/assignment/uploads/'+filename;
 
-    var callbackUrl   = "/assignment/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+    widgetModel
+        .findWidgetById(widgetId)
+        .then(function(widget){
+            widget.url = '/assignment/uploads/'+filename;
+            widgetModel
+                .updateWidget(widget._id, widget)
+                .then(function (){
+                    res.redirect(callbackUrl);
+                });
+        });
 
-    res.redirect(callbackUrl);
 }
 
 
