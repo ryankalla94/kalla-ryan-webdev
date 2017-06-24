@@ -5,18 +5,29 @@
 (function(){
     angular
         .module("MapApp")
-        .controller('mapController', mapController);
+        .controller('pinEditController', pinEditController);
 
 
 
-    function mapController(){
+    function pinEditController(pinService, $routeParams, $location, currentUser){
 
         var model = this;
+        model.userId = currentUser._id;
+        model.pinId = $routeParams.pinId;
+
+        model.updatePin = updatePin;
+        model.deletePin = deletePin;
+
         model.getLocation = getLocation;
         model.showPosition = showPosition;
         model.addMarker = addMarker;
         model.showAddress = showAddress;
         model.test = function(){};
+        model.currentMarker = null;
+
+        model.error = null;
+
+        model.pinName = "";
 
 
         function init(){
@@ -25,29 +36,62 @@
 
             model.map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 3,
-                center: new google.maps.LatLng(37.09024, -95.712891),
+                center: new google.maps.LatLng(37.09024, -95.712891)
             });
 
             model.geocoder = new google.maps.Geocoder;
 
-            model.currentMarker = null;
+            pinService
+                .findPinById(model.pinId)
+                .then(function (pin){
+                    model.pin = pin;
+                    model.pinName = model.pin.name;
+                    model.pinPrivacy = model.pin.privacy;
+                    var position = new google.maps.LatLng(model.pin.lat, model.pin.lng);
+                    addMarker(position, "", model.map);
+                });
+
+
 
             model.infowindow = new google.maps.InfoWindow;
 
 
-            // This event listener calls addMarker() when the map is clicked.
+            // This event listener calls addMarker() when the pin is clicked.
             google.maps.event.addListener(model.map, 'click', function(event) {
                 addMarker(event.latLng, "", model.map);
             });
 
 
+
         }
         init();
 
+        function updatePin(pin){
+            if(!model.currentMarker){
+                console.log("no current marker");
+            }
+            model.pin.lat  = model.currentMarker.position.lat();
+            model.pin.lng = model.currentMarker.position.lng();
+            model.pin._id = model.pinId;
+            model.pin.name = model.pinName;
+            model.pin.privacy = model.pinPrivacy.toUpperCase();
+            pinService
+                .updatePin(model.pinId, model.pin)
+                .then(function(){
+                    $location.url("/pin");
+                });
+        }
+
+        function deletePin(){
+            pinService
+                .deletePin(model.pinId)
+                .then(function(){
+                    $location.url("/pin");
+                });
+        }
+
 
         function getLocation() {
-            console.log("getLocation");
-
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
             } else {
@@ -56,13 +100,12 @@
         }
 
         function showPosition(position) {
-            console.log("show position test");
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
             var location = new google.maps.LatLng(lat,lng);
             addMarker(location, "", model.map);
             model.map.panTo(location);
-            smoothZoom(model.map, 12, 4);
+            smoothZoom(model.map, 15, 4);
         }
 
         function showAddress(){
@@ -80,22 +123,8 @@
             geocoder.geocode({'location': latlng}, function(results, status){
                 if (status === 'OK') {
                     if (results[0]) {
-
-                        console.log(results[0].formatted_address);
-
                         model.address = results[0].formatted_address;
-
                         document.getElementById('hiddenButton').click();
-
-
-                        // var marker = new google.maps.Marker({
-                        //     position: latlng,
-                        //     map: model.map
-                        // });
-                        // model.infowindow.setContent(results[0].formatted_address);
-                        // model.infowindow.open(model.map, marker);
-
-
                     } else {
                         window.alert('No results found');
                     }
@@ -105,13 +134,12 @@
             });
         }
 
-
         function removeMarker(marker){
             marker.setMap(null);
         }
 
 
-// Adds a marker to the map.
+// Adds a marker to the pin.
         function addMarker(location, label, map) {
             // Add the marker at the clicked location, and add the next-available label
             // from the array of alphabetical characters.
@@ -125,6 +153,8 @@
                 label: label,
                 map: map
             });
+
+            showAddress();
         }
 
         function smoothZoom (map, max, cnt) {
@@ -147,9 +177,5 @@
 
 })();
 
-
-
-// In the following example, markers appear when the user clicks on the map.
-// Each marker is labeled with a single alphabetical character.
 
 

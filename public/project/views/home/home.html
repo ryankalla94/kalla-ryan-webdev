@@ -1,0 +1,53 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-green navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <label class="navbar-title">
+                Project
+            </label>
+
+
+            <p class="navbar-text pull-right">
+                <a href="#!/user/search" class="navbar-link">
+                    <span class="glyphicon glyphicon-search"> Search Users</span>
+                </a>
+            </p>
+
+            <a class="btn btn-success pull-right"
+               ng-if="model.currentUser._id"
+               ng-click="model.logout()">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<h1 class="home-title">Welcome to Pin Dropper</h1>
+
+
+<div class="container-fluid login-buttons">
+
+
+    <a class="btn btn-primary btn-block"
+       ng-if="!model.currentUser._id"
+       href="#!/login">Login</a>
+
+    <a class="btn btn-success btn-block"
+       ng-if="!model.currentUser._id"
+       href="#!/register">Register</a>
+
+    <a class="btn btn-primary btn-block"
+       ng-if="model.currentUser._id"
+       href="#!/profile">Profile</a>
+
+    <a class="btn btn-info btn-block"
+       ng-if="model.currentUser.roles.indexOf('ADMIN')>-1"
+       href="#!/admin">Admin</a>
+
+
+
+
+</div>
+
+
+
+
+</div>

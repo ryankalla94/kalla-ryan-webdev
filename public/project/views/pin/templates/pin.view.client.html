@@ -1,0 +1,125 @@
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid navbar-green">
+        <div class="navbar-header">
+            <label class="navbar-title">
+                <a href="#!/pin" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                {{model.pin._user.username}}'s Pin
+            </label>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.createPin(model.pin)" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+<div class="bottom-padding">
+
+<div class="container-fluid">
+    <h3 id="pinName">
+        {{model.pin.name}}
+    </h3>
+</div>
+
+<div ng-if="model.error" class="container-fluid alert-info">
+    {{model.error}}
+</div>
+
+<div class="container-fluid" id="map"></div>
+
+<div class="container-fluid">
+    <h3 id="address">
+        {{model.address}}
+    </h3>
+</div>
+
+
+<div class="container-fluid">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <input type="text" ng-model="model.pinComment" placeholder="leave a comment" class="form-control">
+            <a class="btn btn-success  btn-block"
+               ng-click="model.addComment(model.pinComment)">Comment</a>
+        </li>
+        <li ng-repeat="comment in model.pin.comments" class="list-group-item">
+
+            <span class="comment-user">{{comment.user}} :</span>
+            {{comment.text}}
+        </li>
+    </ul>
+</div>
+
+<div class="container-fluid">
+
+    <div class="list-group-item active">
+        Nearby Restaurants
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4">
+            <ul class="list-group">
+                <li ng-click="model.getRestaurantDetails(restaurant)"
+                    class="list-group-item"
+                    ng-repeat="restaurant in model.restaurants">
+                    {{restaurant.name}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-8">
+            <div class="container-fluid" ng-if="model.restaurant">
+                <h3>{{model.restaurant.name}}</h3>
+                <br>
+                {{model.restaurant.formatted_phone_number}}
+                <br>
+                {{model.restaurant.formatted_address}}
+                <br>
+                <br>
+                <strong>Hours</strong>
+                <ul>
+                    <li ng-repeat="day in model.restaurant.opening_hours.weekday_text">
+                        {{day}}
+                    </li>
+                </ul>
+                <br>
+                <strong>Rating</strong>
+                {{model.restaurant.rating}}
+                <br>
+                <br>
+
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        Reviews
+                    </li>
+                    <li class="list-group-item" ng-repeat="review in model.restaurant.reviews">
+                        {{review.author_name}}
+                        <br>
+                        {{review.rating}}
+                        <br>
+                        {{review.text}}
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<button id="hiddenButton" ng-click="model.test()"></button>
+
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
+
+
+<!-- Replace the value of the key parameter with your own API key.                              &callback=initialize -->
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9lgvIli9MSMufacGSus0ZqLtHKSk1UJA"></script>-->
+

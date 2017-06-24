@@ -1,0 +1,28 @@
+<link href="/css/bootstrap.min.css" rel="stylesheet"/>
+
+<div class="container-fluid">
+    <h1>list of users</h1>
+
+    <form method="post" action="/lectures/ejs/crud/user">
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <input name="username" class="form-control">
+                <button class="btn btn-block btn-primary" type="submit"> Create User</button>
+            </li>
+
+            <% for(var u in users){
+            %>      <li class="list-group-item">
+                        <%= users[u].username %>
+                        <a class="pull-right" href="/lectures/ejs/crud/user/<%= users[u]._id %>/delete">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </li>
+            <% }
+            %>
+
+        </ul>
+    </form>
+
+
+</div>

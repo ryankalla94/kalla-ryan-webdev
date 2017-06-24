@@ -1,10 +1,17 @@
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
-    width: 400px;
-    height: 400px;
+    width: 250px;
+    height: 250px;
     margin: auto;
-    margin-top: 60px;
+}
+
+@media (min-width: 768px) {
+    #map {
+        width: 400px;
+        height: 400px;
+        margin: auto;
+    }
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
@@ -22,18 +29,20 @@ select.form-control {
 
 body {
     padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .login-buttons {
     margin-top: 60px;
 }
 
+
 .navbar-header{
     padding-left: 15px;
     width: 100%;
 }
 
-.navbar-blue {
+.navbar-green {
     color: #fff;
     background-color: limegreen;
     border-color: forestgreen;
@@ -60,6 +69,26 @@ span.glyphicon {
     display: none;
 }
 
-h3 {
+h3, .center-text {
     text-align: center;
+}
+
+.bottom-padding{
+    padding-bottom: 60px;
+}
+
+.comment-user {
+    font-size: 16pt;
+}
+
+.home-title {
+    text-align: center;
+}
+
+#greenIcon > .glyphicon {
+    color: limegreen;
+}
+
+#redIcon > .glyphicon {
+    color: red;
 }

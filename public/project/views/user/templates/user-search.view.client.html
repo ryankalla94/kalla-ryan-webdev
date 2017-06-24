@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid navbar-green">
+        <div class="navbar-header">
+            <label class="navbar-title">
+                <a href="#!/" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                User Search
+            </label>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+
+    <input type="text"
+           ng-model="model.searchTerm"
+           ng-change="model.newSearch(model.searchTerm)"
+           class="form-control"
+           placeholder="Search username">
+
+    <div class="container-fluid alert-info" ng-if="model.message">
+        {{model.message}}
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="user in model.users">
+            {{user.username}}
+
+            <a class="pull-right"
+               id="redIcon"
+               ng-if="model.currentUser.roles.indexOf('ADMIN')>-1"
+               ng-click="model.deleteUser(user)">
+                &nbsp <span class="glyphicon glyphicon-remove"></span>
+            </a>
+
+            <a ng-click="model.friendRequest(user)" class="pull-right" id="greenIcon">
+                <span class="glyphicon glyphicon-plus"></span>
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

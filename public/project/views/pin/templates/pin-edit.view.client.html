@@ -1,0 +1,77 @@
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid navbar-green">
+        <div class="navbar-header">
+            <label class="navbar-title">
+                <a href="#!/pin" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                Edit Pin
+            </label>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.updatePin(model.pin)" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="bottom-padding">
+
+<div class="container-fluid">
+    <label class="center-text" for="pinName" >Pin Name</label>
+    <input id="pinName" class="form-control" ng-model="model.pinName" placeholder="Pin Name">
+</div>
+
+<div ng-if="model.error" class="container-fluid alert-info">
+    {{model.error}}
+</div>
+
+    <div class="container-fluid">
+        <label class="center-text" for="privacy" >Pin Privacy</label>
+        <select ng-model="model.pinPrivacy" id="privacy" class="form-control">
+            <option>Public</option>
+            <option>Friends</option>
+            <option>Private</option>
+        </select>
+
+    </div>
+
+<div class="container-fluid" id="map"></div>
+
+<div class="container-fluid">
+    <h3>
+        Click to add a pin, or...
+    </h3>
+
+    <a ng-click="model.getLocation()"
+       class="btn btn-success btn-block" id="currentLocationButton">
+        Pin Current Location
+    </a>
+
+    <button ng-click="model.deletePin()" class="btn btn-block btn-danger">
+        Delete Pin
+    </button>
+
+    <h3 id="address">
+        {{model.address}}
+    </h3>
+
+</div>
+
+
+
+
+<button id="hiddenButton" ng-click="model.test()"></button>
+
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
+
+
+<!-- Replace the value of the key parameter with your own API key.                              &callback=initialize -->
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9lgvIli9MSMufacGSus0ZqLtHKSk1UJA"></script>-->
+

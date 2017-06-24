@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid navbar-blue">
+    <div class="container-fluid navbar-green">
         <div class="navbar-header">
             <label class="navbar-title">
                 Profile
@@ -14,6 +14,8 @@
 </nav>
 
 
+
+<div class="bottom-padding">
 
 
 
@@ -62,6 +64,32 @@
         </div>
     </form>
 
+    <ul ng-if="model.requests.length > 0" class="list-group">
+        <li class="list-group-item active">
+            Friend Requests
+        </li>
+        <li class="list-group-item" ng-repeat="request in model.requests">
+            {{request.username}}
+            <a ng-click="model.addFriend(request)" class="navbar-link pull-right" id="greenIcon">
+                <span class="glyphicon glyphicon-plus"></span>
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </li>
+    </ul>
+
+    <ul ng-if="model.friends.length > 0" class="list-group">
+        <li class="list-group-item active">
+            Friends
+        </li>
+        <li class="list-group-item" ng-repeat="friend in model.friends">
+            {{friend.username}}
+            <a ng-click="model.removeFriend(friend)" class="navbar-link pull-right" id="redIcon">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </li>
+    </ul>
+
+
     <a class="btn btn-success btn-block"
        ng-click="model.updateUser(model.user)">Update</a>
 
@@ -69,7 +97,7 @@
        ng-click="model.deleteUser(model.user)">Unregister</a>
 
     <a class="btn btn-primary btn-block"
-       href="#">Pins</a>
+       href="#!/pin">Pins</a>
 
     <a class="btn btn-danger  btn-block"
        ng-click="model.logout()">Logout</a>
@@ -78,3 +106,6 @@
 
 </div>
 
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

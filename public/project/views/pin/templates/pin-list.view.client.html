@@ -1,0 +1,42 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid navbar-green">
+        <div class="navbar-header">
+            <label class="navbar-title">
+                <a href="#!/profile" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                Pin List
+            </label>
+            <p class="navbar-text pull-right">
+                <a href="#!/pin/new" class="navbar-link">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="bottom-padding">
+
+<div class="container-fluid">
+    <ul class="list-group">
+        <li class="list-group-item website-list-header active">
+            Name
+        </li>
+
+        <li ng-repeat="pin in model.pins" class="list-group-item">
+            <a href="#!/pin/{{pin._id}}">
+                {{pin.name}}
+            </a>
+            <span class="pull-right blue-text">
+                <a href="#!/pin/{{pin._id}}/edit" class="glyphicon glyphicon-cog"></a>
+            </span>
+        </li>
+    </ul>
+</div>
+
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

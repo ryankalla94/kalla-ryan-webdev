@@ -26,6 +26,9 @@ app.use(app.express.static(__dirname + '/public'));
 require ("./test/app.js")(app);
 
 
+require("./lectures/ejs/crud/index");
+
+
 require('./assignment/app');
 
 

@@ -2,6 +2,7 @@
  * Created by ryankalla on 6/13/17.
  */
 require('./services/user.service.server');
+require('./services/pin.service.server');
 
 
 var mongoose = require('mongoose');

@@ -19,11 +19,24 @@
     <script src="app.js"></script>
     <script src="config.js"></script>
 
+    <!-- Home -->
+    <script src="views/home/main.controller.client.js"></script>
+
+
     <!-- User -->
     <script src="services/user.service.client.js"></script>
     <script src="views/user/controllers/login.controller.client.js"></script>
     <script src="views/user/controllers/profile.controller.client.js"></script>
     <script src="views/user/controllers/register.controller.client.js"></script>
+    <script src="views/user/controllers/user-search.controller.client.js"></script>
+
+
+    <!-- Pin -->
+    <script src="services/pin.service.client.js"></script>
+    <script src="views/pin/controllers/pin-list.controller.client.js"></script>
+    <script src="views/pin/controllers/pin-new.controller.client.js"></script>
+    <script src="views/pin/controllers/pin-edit.controller.client.js"></script>
+    <script src="views/pin/controllers/pin.controller.client.js"></script>
 
 
 
@@ -33,10 +46,12 @@
     <link href="../assignment/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap theme -->
     <link href="../assignment/vendor/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
 
-    <script src="views/map/controllers/map.controller.client.js"></script>
+    <script src="views/pin/controllers/pin-new.controller.client.js"></script>
 
 
     <title>Project Home Page</title>
@@ -49,6 +64,8 @@
 <div ng-view>
 
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9lgvIli9MSMufacGSus0ZqLtHKSk1UJA&libraries=places"></script>
 
 
 </body>

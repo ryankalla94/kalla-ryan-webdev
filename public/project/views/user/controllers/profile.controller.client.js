@@ -8,18 +8,24 @@
         .module('MapApp')
         .controller('profileController', profileController);
 
-    function profileController($location, $routeParams, userService) {
+    function profileController($location, $routeParams, userService, currentUser) {
 
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
+        model.requests = currentUser.requests;
+        model.friends = currentUser.friends;
 
+        model.message = null;
 
         //model.userId = currentUser._id;
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
         model.logout = logout;
+        model.addFriend = addFriend;
+        model.removeFriend = removeFriend;
+
 
         function init(){
             userService
@@ -60,13 +66,27 @@
 
 
         function logout(){
-            $location.url("/login");
+            userService
+                .logout()
+                .then(function (){
+                    $location.url('/');
+                })
+        }
 
-            // userService
-            //     .logout()
-            //     .then(function (){
-            //         $location.url('/login');
-            //     })
+        function addFriend(request){
+            userService
+                .addFriend(request, currentUser)
+                .then(function(){
+                    model.message = "friend added";
+                })
+        }
+
+        function removeFriend(friend){
+            userService
+                .removeFriend(friend, currentUser)
+                .then(function(){
+                    model.message = "friend removed";
+                })
         }
 
     }
