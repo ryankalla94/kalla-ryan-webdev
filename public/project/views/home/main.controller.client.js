@@ -15,6 +15,13 @@
         model.logout = logout;
 
         function init(){
+
+            pinService
+                .findAllPins()
+                .then(function(pins){
+                    model.allPins = pins;
+                });
+
             pinService
                 .findPublicPins()
                 .then(function (pins){

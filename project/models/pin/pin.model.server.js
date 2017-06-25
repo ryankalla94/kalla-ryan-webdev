@@ -17,11 +17,16 @@ pinModel.addComment = addComment;
 pinModel.deleteComment = deleteComment;
 pinModel.findPublicPins = findPublicPins;
 pinModel.findFriendPins = findFriendPins;
+pinModel.findAllPins = findAllPins;
 
 module.exports = pinModel;
 
+function findAllPins() {
+    return pinModel.find();
+}
+
 function findPublicPins(){
-    return pinModel.find({privacy : "PUBLIC"})
+    return pinModel.find({privacy : "PUBLIC"});
 }
 
 function findFriendPins(userId, $q){

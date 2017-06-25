@@ -20,6 +20,16 @@
         this.deleteComment = deleteComment;
         this.findPublicPins = findPublicPins;
         this.findFriendPins = findFriendPins;
+        this.findAllPins = findAllPins;
+
+
+        function findAllPins(){
+            var url = '/api/project/pin/admin/all';
+            return $http.get(url)
+                .then(function (response){
+                    return response.data;
+                });
+        }
 
 
         function createPin(userId, pin){

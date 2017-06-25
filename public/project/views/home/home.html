@@ -85,6 +85,17 @@
         </li>
     </ul>
 
+    <ul ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" class="list-group">
+        <li class="list-group-item active pin-group-header">
+            <h3>All Pins</h3>
+        </li>
+        <li class="list-group-item" ng-repeat="pin in model.allPins">
+            <a href="#!/pin/{{pin._id}}">
+                {{pin.name}}
+            </a>
+        </li>
+    </ul>
+
 
 
 

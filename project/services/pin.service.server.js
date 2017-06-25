@@ -17,6 +17,16 @@ app.delete('/api/project/pin/:pinId/comment/:commentId', deleteComment);
 
 app.get('/api/project/pin/public/all', findPublicPins);
 app.get('/api/project/pin/friends/:userId', findFriendPins);
+app.get('/api/project/pin/admin/all', findAllPins);
+
+
+function findAllPins(req, res){
+    pinModel
+        .findAllPins()
+        .then(function(pins){
+            res.json(pins);
+        })
+}
 
 
 function findPublicPins(req, res){
