@@ -26,13 +26,13 @@
                 .findPublicPins()
                 .then(function (pins){
                     model.publicPins = pins;
+                    var publicPins = [];
                     if(currentUser._id){
                         pinService
                             .findFriendPins(currentUser._id)
                             .then(function (pins){
                                 model.friendPins = pins;
                                 var friendPins = [];
-                                var publicPins = [];
                                 if(model.pinCategory === "Food"){
                                     if(currentUser._id){
                                         for(var p in model.friendPins){
@@ -41,12 +41,6 @@
                                             }
                                         }
                                     }
-                                    for(var p in model.publicPins){
-                                        if(model.publicPins[p].categories.indexOf('FOOD') > -1){
-                                            publicPins.push(model.publicPins[p]);
-                                        }
-                                    }
-                                    model.publicPins = publicPins;
                                     model.friendPins = friendPins;
                                 } else if(model.pinCategory === "Drink"){
                                     if(currentUser._id){
@@ -56,12 +50,6 @@
                                             }
                                         }
                                     }
-                                    for(var p in model.publicPins){
-                                        if(model.publicPins[p].categories.indexOf('DRINK') > -1){
-                                            publicPins.push(model.publicPins[p]);
-                                        }
-                                    }
-                                    model.publicPins = publicPins;
                                     model.friendPins = friendPins;
                                 } else if(model.pinCategory === "Leisure"){
                                     if(currentUser._id){
@@ -71,12 +59,6 @@
                                             }
                                         }
                                     }
-                                    for(var p in model.publicPins){
-                                        if(model.publicPins[p].categories.indexOf('LEISURE') > -1){
-                                            publicPins.push(model.publicPins[p]);
-                                        }
-                                    }
-                                    model.publicPins = publicPins;
                                     model.friendPins = friendPins;
                                 } else if(model.pinCategory === "Music"){
                                     if(currentUser._id){
@@ -86,15 +68,38 @@
                                             }
                                         }
                                     }
-                                    for(var p in model.publicPins){
-                                        if(model.publicPins[p].categories.indexOf('MUSIC') > -1){
-                                            publicPins.push(model.publicPins[p]);
-                                        }
-                                    }
-                                    model.publicPins = publicPins;
                                     model.friendPins = friendPins;
                                 }
                             })
+                    }
+                    if(model.pinCategory === "Food"){
+                        for(var p in model.publicPins){
+                            if(model.publicPins[p].categories.indexOf('FOOD') > -1){
+                                publicPins.push(model.publicPins[p]);
+                            }
+                        }
+                        model.publicPins = publicPins;
+                    } else if(model.pinCategory === "Drink"){
+                        for(var p in model.publicPins){
+                            if(model.publicPins[p].categories.indexOf('DRINK') > -1){
+                                publicPins.push(model.publicPins[p]);
+                            }
+                        }
+                        model.publicPins = publicPins;
+                    } else if(model.pinCategory === "Leisure"){
+                        for(var p in model.publicPins){
+                            if(model.publicPins[p].categories.indexOf('LEISURE') > -1){
+                                publicPins.push(model.publicPins[p]);
+                            }
+                        }
+                        model.publicPins = publicPins;
+                    } else if(model.pinCategory === "Music") {
+                        for (var p in model.publicPins) {
+                            if (model.publicPins[p].categories.indexOf('MUSIC') > -1) {
+                                publicPins.push(model.publicPins[p]);
+                            }
+                        }
+                        model.publicPins = publicPins;
                     }
                 })
 
