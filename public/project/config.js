@@ -56,7 +56,7 @@
                 controller: 'pinController',
                 controllerAs: 'model',
                 resolve : {
-                    currentUser : checkLoggedIn
+                    currentUser : checkCurrentUser
                 }
             })
             .when('/pin/:pinId/edit', {
@@ -103,7 +103,7 @@
             .then(function (user){
                 if(user === '0'){
                     deferred.resolve({});
-                    $location.url('/');
+                    //$location.url('/');
                 } else{
                     deferred.resolve(user);
                 }

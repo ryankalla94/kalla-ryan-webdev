@@ -1,0 +1,21 @@
+
+body {
+    background-color: darkslategray;
+    color: whitesmoke;
+}
+
+h3 {
+    margin: 0;
+    text-align: center;
+}
+
+h1, h4 {
+    text-align: center;
+}
+
+.my-picture {
+    display: block;
+    width: 300px;
+    margin: auto;
+    margin-bottom: 15px;
+}

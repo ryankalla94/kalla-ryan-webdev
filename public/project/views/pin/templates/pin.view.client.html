@@ -10,11 +10,6 @@
                 </a>
                 {{model.pin._user.username}}'s Pin
             </label>
-            <p class="navbar-text pull-right">
-                <a ng-click="model.createPin(model.pin)" class="navbar-link">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </p>
         </div>
     </div>
 </nav>
@@ -22,7 +17,21 @@
 
 <div class="bottom-padding">
 
+
 <div class="container-fluid">
+
+    <button ng-click="model.deletePin()"
+            ng-if="model.currentUser.roles.indexOf('ADMIN')>-1"
+            class="btn btn-block btn-danger">
+        Delete Pin
+    </button>
+
+    <a href="#!/pin/{{model.pinId}}/edit"
+            ng-if="model.currentUser.roles.indexOf('ADMIN')>-1"
+            class="btn btn-block btn-info">
+        Edit Pin
+    </a>
+
     <h3 id="pinName">
         {{model.pin.name}}
     </h3>
@@ -43,7 +52,10 @@
 
 <div class="container-fluid">
     <ul class="list-group">
-        <li class="list-group-item">
+        <li class="list-group-item active">
+            Comments
+        </li>
+        <li class="list-group-item" ng-if="model.currentUser._id">
             <input type="text" ng-model="model.pinComment" placeholder="leave a comment" class="form-control">
             <a class="btn btn-success  btn-block"
                ng-click="model.addComment(model.pinComment)">Comment</a>
@@ -52,6 +64,12 @@
 
             <span class="comment-user">{{comment.user}} :</span>
             {{comment.text}}
+            <a class="pull-right"
+               id="redIcon"
+               ng-if="model.currentUser.roles.indexOf('ADMIN')>-1||model.currentUser.username===comment.user"
+               ng-click="model.deleteComment(comment)">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
         </li>
     </ul>
 </div>

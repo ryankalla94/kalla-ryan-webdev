@@ -14,9 +14,40 @@ pinModel.findAllPinsForUser = findAllPinsForUser;
 pinModel.updatePin = updatePin;
 pinModel.deletePin = deletePin;
 pinModel.addComment = addComment;
+pinModel.deleteComment = deleteComment;
+pinModel.findPublicPins = findPublicPins;
+pinModel.findFriendPins = findFriendPins;
 
 module.exports = pinModel;
 
+function findPublicPins(){
+    return pinModel.find({privacy : "PUBLIC"})
+}
+
+function findFriendPins(userId, $q){
+    return userModel
+        .findById(userId)
+        .then(function(user){
+            return pinModel.find()
+                .then(function (pins){
+                    var friendIds = [];
+                    for(var f in user.friends){
+                        if(user.friends[f]._id){
+                            friendIds.push(user.friends[f]._id);
+                        }
+                    }
+
+                    var friendPins = [];
+                    for(var p in pins){
+                        if(friendIds.indexOf(pins[p]._user.toString()) > -1 && pins[p].privacy === "FRIENDS"){
+                            friendPins.push(pins[p])
+                        }
+                    }
+                    return friendPins;
+                })
+        })
+
+}
 
 function createPin(userId, pin){
     pin._user = userId;
@@ -56,6 +87,22 @@ function deletePin(pinId){
 function addComment(pinId, comment){
     return pinModel
         .update({_id: pinId}, {$push: {comments: comment}});
+}
+
+function deleteComment(pinId, commentId){
+    return pinModel
+        .findById(pinId)
+        .then(function(pin){
+            var index = 0;
+            for(var c in pin.comments){
+                if(pin.comments[c]._id === commentId){
+                    console.log("test");
+                    index = c;
+                }
+            }
+            pin.comments.splice(index, 1);
+            return pin.save();
+        })
 }
 
 

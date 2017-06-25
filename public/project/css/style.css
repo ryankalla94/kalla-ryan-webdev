@@ -30,10 +30,16 @@ select.form-control {
 body {
     padding-top: 60px;
     padding-bottom: 60px;
+    background-color: darkslategray;
+    color: whitesmoke;
 }
 
 .login-buttons {
     margin-top: 60px;
+}
+
+.list-group {
+    color: darkslategray;
 }
 
 
@@ -43,9 +49,14 @@ body {
 }
 
 .navbar-green {
-    color: #fff;
-    background-color: limegreen;
-    border-color: forestgreen;
+    color: whitesmoke;
+    background-color: black;
+    border-color: black;
+    border-bottom-width: 2px;
+}
+
+.navbar{
+    border-color: black;
 }
 
 label.navbar-title {
@@ -92,3 +103,26 @@ h3, .center-text {
 #redIcon > .glyphicon {
     color: red;
 }
+#blueIcon > .glyphicon {
+    color: blue;
+}
+
+.create-user-button {
+    margin-top: 0;
+}
+
+.update-user-button {
+    margin-top: 0;
+    margin-left: 5px;
+}
+
+.admin-checkbox {
+    margin-top: 8px;
+}
+
+.pin-group-header {
+    margin-top: 15px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+

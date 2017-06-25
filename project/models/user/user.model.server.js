@@ -49,8 +49,6 @@ function findUserByCredentials(username, password){
 }
 
 function updateUser(userId, newUser){
-    delete newUser.username;
-    delete newUser.password;
     return userModel.update({_id: userId}, {$set: newUser});
 }
 

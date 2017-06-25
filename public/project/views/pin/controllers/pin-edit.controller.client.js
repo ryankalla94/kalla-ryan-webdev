@@ -47,6 +47,19 @@
                     model.pin = pin;
                     model.pinName = model.pin.name;
                     model.pinPrivacy = model.pin.privacy;
+                    if(pin.categories.indexOf('FOOD') > -1){
+                        model.catFood = true;
+                    }
+                    if(pin.categories.indexOf('DRINK') > -1){
+                        model.catDrink = true;
+                    }
+                    if(pin.categories.indexOf('LEISURE') > -1){
+                        model.catLeisure = true;
+                    }
+                    if(pin.categories.indexOf('MUSIC') > -1){
+                        model.catMusic = true;
+                    }
+
                     var position = new google.maps.LatLng(model.pin.lat, model.pin.lng);
                     addMarker(position, "", model.map);
                 });
@@ -70,6 +83,20 @@
             if(!model.currentMarker){
                 console.log("no current marker");
             }
+            var categories = [];
+            if(model.catFood){
+                categories.push("FOOD");
+            }
+            if(model.catDrink){
+                categories.push("DRINK");
+            }
+            if(model.catLeisure){
+                categories.push("LEISURE");
+            }
+            if(model.catMusic){
+                categories.push("MUSIC");
+            }
+            model.pin.categories = categories;
             model.pin.lat  = model.currentMarker.position.lat();
             model.pin.lng = model.currentMarker.position.lng();
             model.pin._id = model.pinId;

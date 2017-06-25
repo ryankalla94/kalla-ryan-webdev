@@ -65,6 +65,21 @@
                 model.error = "pin needs a name";
                 return;
             }
+
+            var categories = [];
+            if(model.catFood){
+                categories.push("FOOD");
+            }
+            if(model.catDrink){
+                categories.push("DRINK");
+            }
+            if(model.catLeisure){
+                categories.push("LEISURE");
+            }
+            if(model.catMusic){
+                categories.push("MUSIC");
+            }
+            model.pin.categories = categories;
             model.pin.lat  = model.currentMarker.position.lat();
             model.pin.lng = model.currentMarker.position.lng();
             model.pin.name = model.pinName;

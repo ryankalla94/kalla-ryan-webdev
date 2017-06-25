@@ -17,7 +17,10 @@
         this.updatePin = updatePin;
         this.deletePin = deletePin;
         this.addComment = addComment;
-        this.getRestaurants = getRestaurants;
+        this.deleteComment = deleteComment;
+        this.findPublicPins = findPublicPins;
+        this.findFriendPins = findFriendPins;
+
 
         function createPin(userId, pin){
             var url = '/api/project/user/'+ userId +'/pin';
@@ -68,20 +71,30 @@
                 });
         }
 
-        function getRestaurants(lat, lng){
 
-            console.log("test");
+        function deleteComment(pinId, commentId){
+            var url = '/api/project/pin/' + pinId + '/comment/' + commentId;
+            return $http.delete(url)
+                .then(function (response){
+                    return response.data;
+                });
+        }
 
-            var googleUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-            googleUrl += "location=" + lat + "," + lng;
-            googleUrl += "&radius=200&type=restaurant&key=AIzaSyA9lgvIli9MSMufacGSus0ZqLtHKSk1UJA";
-            return $http.get(googleUrl)
-                .then(function(restaurants){
 
-                    console.log(restaurants);
+        function findPublicPins(){
+            var url = '/api/project/pin/public/all';
+            return $http.get(url)
+                .then(function (response){
+                    return response.data;
+                });
+        }
 
-                    return restaurants;
-                })
+        function findFriendPins(userId){
+            var url = '/api/project/pin/friends/' + userId;
+            return $http.get(url)
+                .then(function (response){
+                    return response.data;
+                });
         }
 
     }

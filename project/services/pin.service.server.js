@@ -13,12 +13,43 @@ app.post('/api/project/user/:userId/pin', createPin);
 app.put('/api/project/pin/:pinId', updatePin);
 app.delete('/api/project/pin/:pinId', deletePin);
 app.post('/api/project/pin/:pinId/comment', addComment);
+app.delete('/api/project/pin/:pinId/comment/:commentId', deleteComment);
+
+app.get('/api/project/pin/public/all', findPublicPins);
+app.get('/api/project/pin/friends/:userId', findFriendPins);
+
+
+function findPublicPins(req, res){
+    pinModel
+        .findPublicPins()
+        .then(function(pins){
+            res.json(pins);
+        })
+}
+
+function findFriendPins(req, res){
+    pinModel
+        .findFriendPins(req.params.userId)
+        .then(function(pins){
+            res.json(pins);
+        })
+}
 
 
 function addComment(req, res){
     var comment = req.body;
     pinModel
         .addComment(req.params.pinId, comment)
+        .then(function(){
+            res.sendStatus(202);
+
+        })
+}
+
+
+function deleteComment(req, res){
+    pinModel
+        .deleteComment(req.params.pinId, req.params.commentId)
         .then(function(){
             res.sendStatus(202);
 

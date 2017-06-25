@@ -41,7 +41,7 @@ app.delete('/api/project/friend/:userId1/:userId2', removeFriend);
 app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/project/#!/profile',
+        successRedirect: '/project/#!/',
         failureRedirect: '/project/#!/login'
     }));
 
@@ -59,6 +59,7 @@ function facebookStrategy(token, refreshToken, profile, done) {
                         username:  profile.displayName,
                         firstName: profile.name.givenName,
                         lastName:  profile.name.familyName,
+                        roles: ['USER'],
                         facebook: {
                             id:    profile.id,
                             token: token
@@ -255,7 +256,9 @@ function findUserById(req, res) {
 
 function createUser(req, res){
     var user = req.body;
-    user.roles = ['USER'];
+    if(!user.roles){
+        user.roles = ['USER'];
+    }
     userModel
         .createUser(user)
         .then(function(user){

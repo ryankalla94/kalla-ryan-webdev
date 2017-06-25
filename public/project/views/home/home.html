@@ -38,9 +38,53 @@
        ng-if="model.currentUser._id"
        href="#!/profile">Profile</a>
 
+    <a class="btn btn-success btn-block"
+       ng-if="model.currentUser._id"
+       href="#!/pin">My Pins</a>
+
     <a class="btn btn-info btn-block"
        ng-if="model.currentUser.roles.indexOf('ADMIN')>-1"
-       href="#!/admin">Admin</a>
+       href="#!/user/search">Admin</a>
+
+
+    <div class="container-fluid">
+        <label class="center-text" for="pinCategory" >Filter Pins by Category</label>
+        <select ng-model="model.pinCategory"
+                ng-change="model.filterPins(model.pinCategory)"
+                id="pinCategory"
+                class="form-control">
+            <option>All</option>
+            <option>Food</option>
+            <option>Drink</option>
+            <option>Leisure</option>
+            <option>Music</option>
+        </select>
+    </div>
+
+    <div ng-if="model.currentUser._id">
+        <ul ng-if="model.friendPins.length > 0" class="list-group">
+            <li class="list-group-item active pin-group-header">
+                <h3>Friend Pins</h3>
+            </li>
+            <li class="list-group-item" ng-repeat="pin in model.friendPins">
+                <a href="#!/pin/{{pin._id}}">
+                    {{pin.name}}
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <ul ng-if="model.publicPins.length > 0" class="list-group">
+        <li class="list-group-item active pin-group-header">
+            <h3>Public Pins</h3>
+        </li>
+        <li class="list-group-item" ng-repeat="pin in model.publicPins">
+            <a href="#!/pin/{{pin._id}}">
+                {{pin.name}}
+            </a>
+        </li>
+    </ul>
+
 
 
 

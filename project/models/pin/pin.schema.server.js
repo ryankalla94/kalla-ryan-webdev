@@ -12,6 +12,7 @@ var pinSchema = mongoose.Schema({
     _user: {type: mongoose.Schema.Types.ObjectId, ref: "ProjectUserModel"},
     name: String,
     privacy: {type: String, enum: ["PUBLIC", "FRIENDS", "PRIVATE"]},
+    categories: [{type: String, enum: ['FOOD', 'DRINK', 'LEISURE', 'MUSIC']}],
     lat: Number,
     lng: Number,
     comments: [{}],

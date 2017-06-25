@@ -11,6 +11,7 @@
     </div>
 </nav>
 
+<div class="bottom-padding">
 
 <div class="container-fluid">
 
@@ -25,22 +26,66 @@
     </div>
 
     <ul class="list-group">
+        <li class="list-group-item" ng-if="model.currentUser.roles.indexOf('ADMIN')>-1">
+            <div class="row">
+                <div class="col-xs-4">
+                    <input type="text"
+                           ng-model="model.activeUser.username"
+                           class="form-control"
+                           placeholder="username">
+                </div>
+                <div class="col-xs-4">
+                    <label class="admin-checkbox">
+                        <input type="checkbox" id="admin-checkbox" ng-model="model.activeUser.admin"> ADMIN
+                    </label>
+                </div>
+                <div class="col-xs-4">
+                    <a class="btn btn-primary pull-right update-user-button"
+                       ng-click="model.updateUser(model.activeUser)">Update</a>
+
+                    <a class="btn btn-success pull-right create-user-button"
+                       ng-click="model.createUser(model.activeUser)">Create</a>
+
+                </div>
+
+            </div>
+        </li>
         <li class="list-group-item" ng-repeat="user in model.users">
-            {{user.username}}
+            <div class="row">
+                <div class="col-xs-4">
+                    {{user.username}}
+                </div>
+                <div class="col-xs-4">
+                    <div ng-if="model.currentUser.roles.indexOf('ADMIN')>-1">
+                        {{user.roles}}
+                    </div>
+                </div>
+                <div class="col-xs-4">
 
-            <a class="pull-right"
-               id="redIcon"
-               ng-if="model.currentUser.roles.indexOf('ADMIN')>-1"
-               ng-click="model.deleteUser(user)">
-                &nbsp <span class="glyphicon glyphicon-remove"></span>
-            </a>
+                    <a class="pull-right"
+                       id="blueIcon"
+                       ng-if="model.currentUser.roles.indexOf('ADMIN')>-1"
+                       ng-click="model.selectUser(user)">
+                        &nbsp <span class="glyphicon glyphicon-edit"></span>
+                    </a>
 
-            <a ng-click="model.friendRequest(user)" class="pull-right" id="greenIcon">
-                <span class="glyphicon glyphicon-plus"></span>
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
+                    <a class="pull-right"
+                       id="redIcon"
+                       ng-if="model.currentUser.roles.indexOf('ADMIN')>-1"
+                       ng-click="model.deleteUser(user)">
+                        &nbsp <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+
+                    <a ng-click="model.friendRequest(user)" class="pull-right" id="greenIcon">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </div>
+            </div>
         </li>
     </ul>
+
+</div>
 
 </div>
 

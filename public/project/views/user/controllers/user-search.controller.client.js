@@ -15,11 +15,16 @@
         model.currentUser = currentUser;
         model.userId = currentUser._id;
         model.message = null;
+        model.activeUser = null;
 
         model.newSearch = newSearch;
         model.friendRequest = friendRequest;
         model.deleteUser = deleteUser;
         model.searchTerm = "";
+
+        model.createUser = createUser;
+        model.selectUser = selectUser;
+        model.updateUser = updateUser;
 
 
 
@@ -34,6 +39,47 @@
         }
 
         init();
+
+
+        function selectUser(user){
+            model.activeUser = angular.copy(user);
+            if(user.roles.indexOf('ADMIN')>-1){
+                document.getElementById('admin-checkbox').checked = true;
+            } else {
+                document.getElementById('admin-checkbox').checked = false;
+
+            }
+        }
+
+        function updateUser(user){
+            if(user.admin){
+                user.roles = ['USER', 'ADMIN'];
+            } else {
+                user.roles = ['USER'];
+            }
+            userService
+                .updateUser(user._id, user)
+                .then(function (){
+                    newSearch(model.searchTerm);
+                });
+        }
+
+        function createUser(user){
+            user = {
+                username : user.username,
+                password : user.username
+            };
+            if(user.admin){
+                user.roles = ['USER', 'ADMIN'];
+            } else {
+                user.roles = ['USER'];
+            }
+            userService
+                .createUser(user)
+                .then(function(){
+                    newSearch(model.searchTerm);
+                })
+        }
 
 
         function friendRequest(user){

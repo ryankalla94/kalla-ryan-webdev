@@ -20,6 +20,10 @@
         model.test = function(){};
         model.currentMarker = null;
 
+        model.currentUser = currentUser;
+        model.deletePin = deletePin;
+        model.deleteComment = deleteComment;
+
 
         model.addComment = addComment;
 
@@ -79,6 +83,27 @@
         }
         init();
 
+
+        function deletePin(){
+            pinService
+                .deletePin(model.pinId)
+                .then(function(){
+                    $location.url("/");
+                });
+        }
+
+        function deleteComment(comment){
+            pinService
+                .deleteComment(model.pinId, comment._id)
+                .then(function(){
+                    pinService
+                        .findPinById(model.pinId)
+                        .then(function (pin) {
+                            model.pin = pin;
+                        })
+                })
+        }
+
         function getRestaurantDetails(restaurant){
             var request = {
                 placeId: restaurant.place_id
@@ -98,6 +123,7 @@
         function addComment(comment){
 
             var commentObj = {
+                _id : (new Date()).getTime() + "",
                 user : currentUser.username,
                 text : comment
             };
